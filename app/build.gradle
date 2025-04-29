@@ -37,3 +37,8 @@ application {
         mainClassName = 'hexlet.code.App' // Теперь указываем на App
 
 }
+
+tasks.run {
+    standardInput = System.in
+}
+
