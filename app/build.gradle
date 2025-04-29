@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.github.ben-manes.versions' version '0.51.0'
+    id 'application'
 }
 
 
@@ -14,8 +15,25 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.hibernate:hibernate-core:3.6.7.Final'
 }
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "hexlet.code.App"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+application {
+        mainClassName = 'hexlet.code.App' // Теперь указываем на App
+
 }
