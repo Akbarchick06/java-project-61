@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'com.github.ben-manes.versions' version '0.51.0'
     id 'application'
+    id "org.sonarqube" version "6.0.1.5171"
 }
 
 
@@ -42,3 +43,10 @@ tasks.run {
     standardInput = System.in
 }
 
+sonar {
+    properties {
+        property "sonar.projectKey", "Akbarchick06_java-project-61"
+        property "sonar.organization", "akbarchick06"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
