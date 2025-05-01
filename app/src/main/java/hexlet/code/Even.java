@@ -1,36 +1,20 @@
-package hexlet.code;
+package hexlet.code.games;
 
-import java.util.Scanner;
+import hexlet.code.GameLogic;
 import java.util.Random;
 
-public class Even {
-    public static void isEven() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
-        Random random = new Random(1) ;
+public class Even implements GameLogic {
 
-        int correctAnswers = 0;
-        int rounds = 3;
-
-        while (correctAnswers < rounds) {
-            int randomNumber = random.nextInt(100);
-            System.out.println("Question: " + randomNumber);
-            System.out.print("Your choice: ");
-            String userAnswer = scanner.nextLine();
-
-            boolean isEven = randomNumber % 2 == 0;
-            String correctAnswer = isEven ? "yes" : "no";
-
-            if (userAnswer.equalsIgnoreCase(correctAnswer)) {
-                System.out.println("Correct!");
-                correctAnswers++;
-            } else {
-                System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '" + correctAnswer + "'.");
-                System.out.println("Let's try again, " + Cli.name  + "!");
-                return;
-            }
-        }
-
-        System.out.println("Congratulations, " + Cli.name + "!");
+    private static final String GAME_INSTRUCTION = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    @Override
+    public String[] generateRound() {
+        Random random = new Random();
+        int number = random.nextInt(100);
+        String question = String.valueOf(number);
+        String correctAnswer = (number % 2 == 0) ? "yes" : "no";
+        return new String[]{question, correctAnswer};
+    }
+    public static String getGameInstruction() {
+        return GAME_INSTRUCTION;
     }
 }
